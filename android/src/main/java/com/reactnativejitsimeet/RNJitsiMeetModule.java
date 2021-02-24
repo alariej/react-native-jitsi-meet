@@ -10,6 +10,7 @@ import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.UiThreadUtil;
 import com.facebook.react.module.annotations.ReactModule;
 import com.facebook.react.bridge.ReadableMap;
+import com.facebook.react.bridge.ReadableMapKeySetIterator;
 
 @ReactModule(name = RNJitsiMeetModule.MODULE_NAME)
 public class RNJitsiMeetModule extends ReactContextBaseJavaModule {
@@ -32,7 +33,7 @@ public class RNJitsiMeetModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void call(String url, ReadableMap userInfo) {
+    public void call(String url, ReadableMap userInfo, ReadableMap featureFlags) {
         UiThreadUtil.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -53,11 +54,18 @@ public class RNJitsiMeetModule extends ReactContextBaseJavaModule {
                             }
                           }
                     }
-                    RNJitsiMeetConferenceOptions options = new RNJitsiMeetConferenceOptions.Builder()
+                    RNJitsiMeetConferenceOptions.Builder optionsBuilder = new RNJitsiMeetConferenceOptions.Builder()
                             .setRoom(url)
                             .setAudioOnly(false)
-                            .setUserInfo(_userInfo)
-                            .build();
+                            .setUserInfo(_userInfo);
+
+                    ReadableMapKeySetIterator iterator = featureFlags.keySetIterator();
+                    while (iterator.hasNextKey()) {
+                        String key = iterator.nextKey();
+                        optionsBuilder.setFeatureFlag(key, featureFlags.getBoolean(key));
+                    }
+                    RNJitsiMeetConferenceOptions options = optionsBuilder.build();
+
                     mJitsiMeetViewReference.getJitsiMeetView().join(options);
                 }
             }
@@ -65,7 +73,7 @@ public class RNJitsiMeetModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void audioCall(String url, ReadableMap userInfo) {
+    public void audioCall(String url, ReadableMap userInfo, ReadableMap featureFlags) {
         UiThreadUtil.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -86,11 +94,18 @@ public class RNJitsiMeetModule extends ReactContextBaseJavaModule {
                             }
                           }
                     }
-                    RNJitsiMeetConferenceOptions options = new RNJitsiMeetConferenceOptions.Builder()
+                    RNJitsiMeetConferenceOptions.Builder optionsBuilder = new RNJitsiMeetConferenceOptions.Builder()
                             .setRoom(url)
                             .setAudioOnly(true)
-                            .setUserInfo(_userInfo)
-                            .build();
+                            .setUserInfo(_userInfo);
+
+                    ReadableMapKeySetIterator iterator = featureFlags.keySetIterator();
+                    while (iterator.hasNextKey()) {
+                        String key = iterator.nextKey();
+                        optionsBuilder.setFeatureFlag(key, featureFlags.getBoolean(key));
+                    }
+                    RNJitsiMeetConferenceOptions options = optionsBuilder.build();
+
                     mJitsiMeetViewReference.getJitsiMeetView().join(options);
                 }
             }

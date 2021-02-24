@@ -5,7 +5,7 @@ Forked from https://github.com/skrafft/react-native-jitsi-meet
 
 For the complete README, please refer to the original repository.
 
-This version of *react-native-jitsi-meet* allows setting the Jitsi *Feature Flags*, when calling the `JitsiMeet.call()` function.
+This version of *react-native-jitsi-meet* allows setting the Jitsi *Feature Flags*, when calling the `JitsiMeet.call()` and `JitsiMeet.audioCall()` functions.
 
 The flags are defined in https://jitsi.github.io/handbook/docs/dev-guide/mobile-feature-flags
 
@@ -15,7 +15,7 @@ Example call:
 JitsiMeet.call(url, userInfo, featureFlags);
 ```
 
-with *featureFlags* being defined for example as:
+where *featureFlags* is defined for example as:
 ```
 const featureFlags = {
     "chat.enabled": false,

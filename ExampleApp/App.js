@@ -11,7 +11,15 @@ function App() {
         email: 'user@example.com',
         avatar: 'https:/gravatar.com/avatar/abc123',
       };
-      JitsiMeet.call(url, userInfo);
+      const featureFlags = {
+        "chat.enabled": false,
+        "conference-timer.enabled": false,
+        "invite.enabled": false,
+        "meeting-name.enabled": false,
+        "notifications.enabled": false,
+        "overflow-menu.enabled": false,
+      };
+      JitsiMeet.call(url, userInfo, featureFlags);
       /* Você também pode usar o JitsiMeet.audioCall (url) para chamadas apenas de áudio */
       /* Você pode terminar programaticamente a chamada com JitsiMeet.endCall () */
     }, 1000);

@@ -3,7 +3,7 @@ React native wrapper for Jitsi Meet SDK
 
 Forked from https://github.com/skrafft/react-native-jitsi-meet
 
-For the complete README, please refer to the original repository.
+For the complete README and installation guide, please refer to the original repository.
 
 This version of *react-native-jitsi-meet* allows setting the Jitsi *Feature Flags*, when calling the `JitsiMeet.call()` and `JitsiMeet.audioCall()` functions.
 
@@ -26,7 +26,7 @@ const featureFlags = {
     "overflow-menu.enabled": false,
 };
 ```
-Note: This package uses version 3.+ of the Jitsi Meet Android SDK.
+Note: This package uses version 3.+ of the Jitsi Meet SDK.
 
 **Warning**: There is no check of a flag's validity. A typo in the flag identificator might crash the package. The only allowed flag value type is Boolean.
 
@@ -57,4 +57,4 @@ targetSdkVersion = 29
 
 ## iOS setup
 
-TBD
+1. in /ios/Podfile, set platform :ios, '11.0'

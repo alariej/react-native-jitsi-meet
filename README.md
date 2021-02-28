@@ -57,4 +57,4 @@ targetSdkVersion = 29
 
 ## iOS setup
 
-1. in /ios/Podfile, set platform :ios, '11.0'
+1. in /ios/Podfile, set `platform :ios, '11.0'`

@@ -34,11 +34,9 @@ public class RNJitsiMeetViewManager extends SimpleViewManager<RNJitsiMeetView> i
 
     @Override
     public RNJitsiMeetView createViewInstance(ThemedReactContext context) {
-        if (mJitsiMeetViewReference.getJitsiMeetView() == null) {
-            RNJitsiMeetView view = new RNJitsiMeetView(context.getCurrentActivity());
-            view.setListener(this);
-            mJitsiMeetViewReference.setJitsiMeetView(view);
-        }
+        RNJitsiMeetView view = new RNJitsiMeetView(context.getCurrentActivity());
+        view.setListener(this);
+        mJitsiMeetViewReference.setJitsiMeetView(view);
         return mJitsiMeetViewReference.getJitsiMeetView();
     }
 

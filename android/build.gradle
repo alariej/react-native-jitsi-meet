@@ -44,6 +44,10 @@ repositories {
 
 dependencies {
     implementation ('org.jitsi.react:jitsi-meet-sdk:3.+') {
-      transitive = true
+        exclude group: 'com.facebook.react', module:'react-native-async-storage'
+        exclude group: 'com.facebook.react', module:'react-native-svg'
+        exclude group: 'com.facebook.react', module:'react-native-webview'
+        exclude group: 'com.facebook.react', module:'react-native-community_netinfo'
+        transitive = true
     }
 }

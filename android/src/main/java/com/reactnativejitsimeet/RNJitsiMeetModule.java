@@ -33,7 +33,7 @@ public class RNJitsiMeetModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void call(String url, ReadableMap userInfo, ReadableMap featureFlags) {
+    public void call(String url, ReadableMap userInfo, ReadableMap featureFlags, Boolean startVideoMuted) {
         UiThreadUtil.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -57,6 +57,7 @@ public class RNJitsiMeetModule extends ReactContextBaseJavaModule {
                     RNJitsiMeetConferenceOptions.Builder optionsBuilder = new RNJitsiMeetConferenceOptions.Builder()
                             .setRoom(url)
                             .setAudioOnly(false)
+                            .setVideoMuted(startVideoMuted)
                             .setUserInfo(_userInfo);
 
                     ReadableMapKeySetIterator iterator = featureFlags.keySetIterator();
